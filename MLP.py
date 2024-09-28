@@ -16,7 +16,6 @@ class MLP(object):
         self.numIn = numIn
         self.numOut = numOut
         self.numHiddenUnits = numHiddenUnits
-        self.learning_rate = 0.1
         #Initialize list of weight and bias matrices
         #   Weight matrices --> random
         #   Bias matrices --> zeros

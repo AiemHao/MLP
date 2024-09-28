@@ -15,7 +15,7 @@ def main():
     unitPerHidden = [521, 125] #Number of units per hidden-layers
     inputNum = 28*28 #Number of input nodes
     outputNum = 10  #Number of output nodes
-    iNum = 65000 #Number of training iterations
+    iNum = 10000 #Number of training iterations
     batch_size = 1
 
     mnistMLP = MLP(hiddenLayersNum+1, inputNum, outputNum, unitPerHidden)
