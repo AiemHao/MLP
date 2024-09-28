@@ -21,24 +21,10 @@ def main():
     mnistMLP = MLP(hiddenLayersNum+1, inputNum, outputNum, unitPerHidden)
     mnistMLP.loadData(input_train, y_train, input_test, y_test)
     trainTimes = iNum
-    while True:
-        mnistMLP.train(iNum, e, batch_size, momentum)
-        mnistMLP.test(500)
-        more = int(input(f"Train more {iNum}? "))
-        if more == 0:
-            break
-        else:
-            trainTimes += more
-            iNum = more
+    mnistMLP.train(iNum, e, batch_size, momentum)
+    mnistMLP.test(500)
+
     print(f"TOTAL train {trainTimes} times")
-    export = input("Do you want to export the model? Y/N")
-    if export == "Y":
-        print(f"Exporting model...")
-        with open('output_W.txt', 'w') as file:
-            print(mnistMLP.W, file=file)
-        with open('output_B.txt', 'w') as file:
-            print(mnistMLP.B, file=file)
-        print(f"DONE!")
     
 
 
