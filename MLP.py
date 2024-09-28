@@ -93,20 +93,23 @@ class MLP(object):
     
     def train(self, numIter, learning_rate, batch_size = 1, momentum = 0):
         for i in range(numIter):
+            # Initialize input and output layer
             (X, Y) = self.initData(self.train_x[i%self.train_x.shape[0]], 
                                         self.train_y[i%self.train_y.shape[0]])
+            # Feedforward
             (Zarr, A) = self.feedForward(X)
-
+            # Calculate the loss and print every 1000 iterations 
             cost = self.loss(Y, A[-1])
             if (i%1000 == 0):
                 print(f"Iter {i} loss is {cost}")
+            # Backpropagation, average the dW, dB in a batch
             if i%batch_size == 0:
                 (dW, dB) = self.backPropagation(X, Y, A, Zarr)
             else:
                 (tdW, tdB) = self.backPropagation(X, Y, A, Zarr)
                 dW = [(x*(i%batch_size - 1)+y)/(i%batch_size) for x,y in zip(dW, tdW)]
                 dB = [(x*(i%batch_size - 1)+y)/(i%batch_size) for x,y in zip(dB, tdB)]
-            
+            # Gradient Descent
             if i == 0:
                 pvW = []
                 pvB = []

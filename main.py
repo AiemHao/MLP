@@ -16,15 +16,11 @@ def main():
     inputNum = 28*28 #Number of input nodes
     outputNum = 10  #Number of output nodes
     iNum = 10000 #Number of training iterations
-    batch_size = 1
-
+    batch_size = 1 #Batch size = 1 so it is SGD 
     mnistMLP = MLP(hiddenLayersNum+1, inputNum, outputNum, unitPerHidden)
-    mnistMLP.loadData(input_train, y_train, input_test, y_test)
-    trainTimes = iNum
+    mnistMLP.loadData(input_train, y_train, input_test, y_test) 
     mnistMLP.train(iNum, e, batch_size, momentum)
     mnistMLP.test(500)
-
-    print(f"TOTAL train {trainTimes} times")
     
 
 
